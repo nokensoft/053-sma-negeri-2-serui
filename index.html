@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA Negeri 2 Serui | Unggul & Berkarakter</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Website resmi SMA Negeri 2 Serui, Kabupaten Kepulauan Yapen, Papua. Sekolah menengah atas yang unggul, kreatif, dan berkarakter dalam mencetak generasi masa depan.">
+    <meta name="keywords" content="SMA Negeri 2 Serui, SMAN 2 Serui, sekolah menengah atas, pendidikan, Serui, Kepulauan Yapen, Papua">
+    <meta name="author" content="SMA Negeri 2 Serui">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sman2serui.sch.id">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="SMA Negeri 2 Serui | Unggul & Berkarakter">
+    <meta property="og:description" content="Website resmi SMA Negeri 2 Serui, Kabupaten Kepulauan Yapen, Papua. Sekolah menengah atas yang unggul, kreatif, dan berkarakter.">
+    <meta property="og:image" content="img/logo-sma-negeri-2-serui.png">
+    <meta property="og:url" content="https://sman2serui.sch.id">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="SMAN 2 Serui">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SMA Negeri 2 Serui | Unggul & Berkarakter">
+    <meta name="twitter:description" content="Website resmi SMA Negeri 2 Serui, Kabupaten Kepulauan Yapen, Papua.">
+    <meta name="twitter:image" content="img/logo-sma-negeri-2-serui.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo-sma-negeri-2-serui.png">
+    <link rel="apple-touch-icon" href="img/logo-sma-negeri-2-serui.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0077b6',
+                        secondary: '#b8860b',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { border-radius: 0 !important; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        #loading-screen img {
+            animation: pulse-logo 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse-logo {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.7; }
+        }
+        #loading-screen .loading-bar {
+            width: 120px;
+            height: 3px;
+            background: #e2e8f0;
+            margin-top: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        #loading-screen .loading-bar::after {
+            content: '';
+            position: absolute;
+            left: -40%;
+            width: 40%;
+            height: 100%;
+            background: #0077b6;
+            animation: loading-slide 1s ease-in-out infinite;
+        }
+        @keyframes loading-slide {
+            0% { left: -40%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans leading-normal" x-data="{ mobileMenu: false }">
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img src="img/logo-sma-negeri-2-serui.png" alt="Loading..." class="w-20 h-20 object-contain">
+        <p class="mt-4 text-sm font-semibold text-primary tracking-widest uppercase">SMAN 2 Serui</p>
+        <div class="loading-bar"></div>
+    </div>
+
+    <header class="bg-white border-b sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-4 py-4 flex flex-col md:flex-row md:justify-between items-center">
+            
+            <div class="flex items-center space-x-3 text-center md:text-left">
+                <img src="img/logo-sma-negeri-2-serui.png" alt="Logo SMAN 2 Serui" class="h-12 w-12 object-contain">
+                <div>
+                    <h1 class="font-bold text-xl text-primary leading-tight">SMAN 2 SERUI</h1>
+                    <p class="text-xs tracking-widest text-secondary font-semibold uppercase">Membangun Masa Depan</p>
+                </div>
+            </div>
+
+            <button @click="mobileMenu = !mobileMenu" class="md:hidden absolute right-4 top-7 text-primary text-2xl">
+                <i class="fa-solid" :class="mobileMenu ? 'fa-times' : 'fa-bars'"></i>
+            </button>
+
+            <ul :class="mobileMenu ? 'flex' : 'hidden'" class="md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 mt-6 md:mt-0 font-medium uppercase text-sm tracking-wide w-full md:w-auto text-center items-center">
+                <li><a href="#hero" class="hover:text-primary transition">Beranda</a></li>
+                <li class="relative" x-data="{ dropProfil: false }" @mouseenter="dropProfil = true" @mouseleave="dropProfil = false">
+                    <button @click="dropProfil = !dropProfil" class="hover:text-primary transition flex items-center gap-1 mx-auto">
+                        Profil <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <ul x-show="dropProfil" x-transition class="absolute left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 mt-2 w-56 bg-white border shadow-lg text-left text-sm uppercase tracking-wide z-50">
+                        <li><a href="#sejarah" class="block px-4 py-3 hover:bg-slate-50 hover:text-primary transition">Sejarah Singkat</a></li>
+                        <li><a href="#visi-misi" class="block px-4 py-3 hover:bg-slate-50 hover:text-primary transition">Visi dan Misi</a></li>
+                        <li><a href="#tujuan" class="block px-4 py-3 hover:bg-slate-50 hover:text-primary transition">Tujuan</a></li>
+                        <li><a href="#moto" class="block px-4 py-3 hover:bg-slate-50 hover:text-primary transition">Moto</a></li>
+                        <li><a href="#lambang" class="block px-4 py-3 hover:bg-slate-50 hover:text-primary transition">Arti Lambang</a></li>
+                        <li><a href="#struktur" class="block px-4 py-3 hover:bg-slate-50 hover:text-primary transition">Struktur Organisasi</a></li>
+                    </ul>
+                </li>
+                <li><a href="#akademik" class="hover:text-primary transition">Akademik</a></li>
+                <li><a href="#galeri" class="hover:text-primary transition">Galeri</a></li>
+                <li><a href="#kontak" class="bg-primary text-white px-5 py-2 hover:bg-opacity-90 transition">Hubungi Kami</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="hero" class="relative h-[80vh] flex items-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="./img/berbaris-lapangan-upacara.jpg" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute inset-0 z-[1] bg-black/50"></div>
+            <div class="container mx-auto px-4 z-10">
+                <div class="max-w-2xl border-l-8 border-secondary pl-8">
+                    <h2 class="text-5xl md:text-7xl font-bold text-white mb-4">Unggul, Kreatif & Berkarakter.</h2>
+                    <p class="text-lg text-white/80 mb-8">Selamat Datang di Website Resmi SMA Negeri 2 Serui. Wadah informasi dan komunikasi digital bagi siswa, guru, dan orang tua.</p>
+                    <a href="#sejarah" class="bg-secondary text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-opacity-90 transition shadow-lg">Jelajahi Profil</a>
+                    <a href="#sambutan" class="bg-white text-primary px-8 py-4 font-bold uppercase tracking-widest hover:bg-white/90 transition shadow-lg">Sambutan Kepala Sekolah</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sambutan Kepala Sekolah -->
+        <section id="sambutan" class="py-20 bg-white border-y">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-900 uppercase">Sambutan Kepala Sekolah</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-12 items-center">
+                    <div class="md:col-span-1 flex flex-col items-center">
+                        <div class="w-56 h-56 bg-slate-200 border-4 border-primary overflow-hidden mb-4">
+                            <img src="img/kepala-sekolah.jpg" alt="Kepala Sekolah" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900">Drs. Nama Kepala Sekolah</h4>
+                        <p class="text-sm text-secondary font-semibold">Kepala SMA Negeri 2 Serui</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <div class="relative">
+                            <i class="fa-solid fa-quote-left text-5xl text-primary/10 absolute -top-4 -left-2"></i>
+                            <p class="text-slate-600 leading-relaxed mb-4 pl-8">
+                                Puji syukur kepada Tuhan Yang Maha Esa atas segala rahmat dan karunia-Nya sehingga website resmi SMA Negeri 2 Serui dapat hadir sebagai sarana informasi dan komunikasi bagi seluruh civitas akademika.
+                            </p>
+                            <p class="text-slate-600 leading-relaxed mb-4 pl-8">
+                                Kami berkomitmen untuk terus meningkatkan kualitas pendidikan dan mengembangkan potensi setiap peserta didik agar menjadi generasi yang unggul, berkarakter, dan siap menghadapi tantangan masa depan.
+                            </p>
+                            <p class="text-slate-600 leading-relaxed pl-8">
+                                Semoga website ini dapat memberikan manfaat bagi semua pihak dan menjadi jendela informasi bagi masyarakat luas tentang berbagai kegiatan dan prestasi SMA Negeri 2 Serui.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistik Sekolah -->
+        <section id="statistik" class="py-20 bg-primary text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold uppercase">Statistik Sekolah</h2>
+                    <p class="text-white/70 mt-2">Data dan pencapaian SMA Negeri 2 Serui</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                    <div class="bg-white/10 border border-white/20 p-6 text-center">
+                        <i class="fa-solid fa-user-graduate text-3xl text-secondary mb-3"></i>
+                        <p class="text-4xl font-bold">850+</p>
+                        <p class="text-sm text-white/70 uppercase tracking-wide mt-1">Siswa Aktif</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/20 p-6 text-center">
+                        <i class="fa-solid fa-chalkboard-user text-3xl text-secondary mb-3"></i>
+                        <p class="text-4xl font-bold">45</p>
+                        <p class="text-sm text-white/70 uppercase tracking-wide mt-1">Tenaga Pendidik</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/20 p-6 text-center">
+                        <i class="fa-solid fa-building-columns text-3xl text-secondary mb-3"></i>
+                        <p class="text-4xl font-bold">24</p>
+                        <p class="text-sm text-white/70 uppercase tracking-wide mt-1">Ruang Kelas</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/20 p-6 text-center">
+                        <i class="fa-solid fa-trophy text-3xl text-secondary mb-3"></i>
+                        <p class="text-4xl font-bold">50+</p>
+                        <p class="text-sm text-white/70 uppercase tracking-wide mt-1">Prestasi</p>
+                    </div>
+                </div>
+                <div class="max-w-3xl mx-auto bg-white/10 border border-white/20 p-8">
+                    <h4 class="text-center font-bold text-lg mb-6">Lulusan Diterima di Perguruan Tinggi</h4>
+                    <div style="position:relative; height:300px;">
+                        <canvas id="statChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFIL: Sejarah Singkat -->
+        <section id="sejarah" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-900 uppercase">Sejarah Singkat</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <img src="./img/berbaris-lapangan-upacara.jpg" alt="Sejarah SMAN 2 Serui" class="w-full aspect-video object-cover shadow-md border">
+                    </div>
+                    <div>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            SMA Negeri 2 Serui didirikan pada tahun XXXX sebagai bentuk komitmen pemerintah daerah Kabupaten Kepulauan Yapen dalam menyediakan pendidikan menengah atas yang berkualitas bagi masyarakat Serui dan sekitarnya.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Sejak berdiri, sekolah ini telah mengalami berbagai perkembangan baik dari segi infrastruktur, tenaga pendidik, maupun prestasi akademik dan non-akademik.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            Hingga saat ini, SMA Negeri 2 Serui terus berkomitmen untuk menjadi lembaga pendidikan unggulan yang mampu mencetak generasi beriman, cerdas, terampil, dan berwawasan lingkungan di Tanah Papua.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFIL: Visi dan Misi -->
+        <section id="visi-misi" class="py-20 bg-slate-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900 uppercase">Visi & Misi</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 border-t-4 border-primary shadow-md">
+                        <i class="fa-solid fa-lightbulb text-4xl text-secondary mb-4"></i>
+                        <h4 class="text-xl font-bold mb-3">Visi</h4>
+                        <p class="text-slate-600 italic">"Terwujudnya generasi yang beriman, cerdas, terampil, dan berwawasan lingkungan."</p>
+                    </div>
+                    <div class="md:col-span-2 bg-white p-8 border shadow-md">
+                        <h4 class="text-xl font-bold mb-4">Misi Sekolah</h4>
+                        <ul class="space-y-3 text-slate-600">
+                            <li class="flex items-start"><i class="fa-solid fa-check text-primary mt-1 mr-3"></i> Meningkatkan kualitas pembelajaran berbasis teknologi informasi.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-primary mt-1 mr-3"></i> Mengembangkan potensi minat dan bakat siswa melalui ekstrakurikuler.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-primary mt-1 mr-3"></i> Menanamkan nilai-nilai religius dan budaya lokal Papua.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-primary mt-1 mr-3"></i> Menciptakan lingkungan sekolah yang bersih, sehat, dan kondusif.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-primary mt-1 mr-3"></i> Membangun kerja sama dengan masyarakat dan dunia usaha.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFIL: Tujuan -->
+        <section id="tujuan" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-900 uppercase">Tujuan</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-start gap-4 bg-slate-50 p-6 border shadow-sm">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary text-white flex items-center justify-center font-bold text-lg">1</div>
+                            <p class="text-slate-600">Menghasilkan lulusan yang beriman dan bertaqwa kepada Tuhan Yang Maha Esa serta berakhlak mulia.</p>
+                        </div>
+                        <div class="flex items-start gap-4 bg-slate-50 p-6 border shadow-sm">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary text-white flex items-center justify-center font-bold text-lg">2</div>
+                            <p class="text-slate-600">Meningkatkan prestasi akademik dan non-akademik peserta didik di tingkat kabupaten, provinsi, dan nasional.</p>
+                        </div>
+                        <div class="flex items-start gap-4 bg-slate-50 p-6 border shadow-sm">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary text-white flex items-center justify-center font-bold text-lg">3</div>
+                            <p class="text-slate-600">Mempersiapkan peserta didik untuk melanjutkan pendidikan ke jenjang perguruan tinggi yang berkualitas.</p>
+                        </div>
+                        <div class="flex items-start gap-4 bg-slate-50 p-6 border shadow-sm">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary text-white flex items-center justify-center font-bold text-lg">4</div>
+                            <p class="text-slate-600">Mewujudkan lingkungan sekolah yang bersih, hijau, dan nyaman sebagai tempat belajar yang kondusif.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFIL: Moto -->
+        <section id="moto" class="py-20 bg-primary text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold uppercase mb-4">Moto</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto mb-10"></div>
+                    <div class="max-w-3xl mx-auto">
+                        <i class="fa-solid fa-quote-left text-6xl text-white/10 mb-6"></i>
+                        <p class="text-3xl md:text-4xl font-bold italic leading-snug mb-6">"Cerdas, Berkarakter, dan Berprestasi"</p>
+                        <p class="text-white/70 text-lg max-w-2xl mx-auto">Moto ini menjadi semangat dan landasan bagi seluruh civitas akademika SMA Negeri 2 Serui dalam menjalankan tugas pendidikan sehari-hari.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFIL: Arti Lambang -->
+        <section id="lambang" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-900 uppercase">Arti Lambang</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+                    <div class="flex justify-center">
+                        <div class="w-64 h-64 bg-slate-100 border-4 border-primary p-4 flex items-center justify-center shadow-md">
+                            <img src="img/logo-sma-negeri-2-serui.png" alt="Lambang SMAN 2 Serui" class="max-w-full max-h-full object-contain">
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="flex-shrink-0 w-3 h-3 bg-primary mt-2"></div>
+                                <div>
+                                    <h5 class="font-bold text-slate-900">Bentuk Perisai</h5>
+                                    <p class="text-slate-600 text-sm">Melambangkan perlindungan dan ketahanan dalam dunia pendidikan.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="flex-shrink-0 w-3 h-3 bg-secondary mt-2"></div>
+                                <div>
+                                    <h5 class="font-bold text-slate-900">Warna Biru</h5>
+                                    <p class="text-slate-600 text-sm">Melambangkan kedalaman ilmu pengetahuan dan laut Papua yang luas.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="flex-shrink-0 w-3 h-3 bg-primary mt-2"></div>
+                                <div>
+                                    <h5 class="font-bold text-slate-900">Warna Emas</h5>
+                                    <p class="text-slate-600 text-sm">Melambangkan kemuliaan, kejayaan, dan semangat meraih prestasi.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="flex-shrink-0 w-3 h-3 bg-secondary mt-2"></div>
+                                <div>
+                                    <h5 class="font-bold text-slate-900">Buku Terbuka</h5>
+                                    <p class="text-slate-600 text-sm">Melambangkan ilmu pengetahuan dan keterbukaan dalam belajar.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="flex-shrink-0 w-3 h-3 bg-primary mt-2"></div>
+                                <div>
+                                    <h5 class="font-bold text-slate-900">Pena</h5>
+                                    <p class="text-slate-600 text-sm">Melambangkan kecerdasan, kreativitas, dan semangat menulis masa depan.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFIL: Struktur Organisasi -->
+        <section id="struktur" class="py-20 bg-slate-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-900 uppercase">Struktur Organisasi</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+                </div>
+                <!-- Kepala Sekolah -->
+                <div class="flex justify-center mb-8">
+                    <div class="bg-primary text-white p-6 text-center shadow-lg w-72">
+                        <i class="fa-solid fa-user-tie text-3xl mb-2"></i>
+                        <h4 class="font-bold text-lg">Kepala Sekolah</h4>
+                        <p class="text-white/80 text-sm">Drs. Nama Kepala Sekolah</p>
+                    </div>
+                </div>
+                <div class="flex justify-center mb-8">
+                    <div class="w-px h-8 bg-slate-300"></div>
+                </div>
+                <!-- Wakil Kepala Sekolah -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-8">
+                    <div class="bg-white border-t-4 border-primary p-5 text-center shadow-md">
+                        <i class="fa-solid fa-book text-2xl text-primary mb-2"></i>
+                        <h5 class="font-bold text-sm">Waka Kurikulum</h5>
+                        <p class="text-slate-500 text-xs mt-1">Nama Waka Kurikulum</p>
+                    </div>
+                    <div class="bg-white border-t-4 border-primary p-5 text-center shadow-md">
+                        <i class="fa-solid fa-users text-2xl text-primary mb-2"></i>
+                        <h5 class="font-bold text-sm">Waka Kesiswaan</h5>
+                        <p class="text-slate-500 text-xs mt-1">Nama Waka Kesiswaan</p>
+                    </div>
+                    <div class="bg-white border-t-4 border-primary p-5 text-center shadow-md">
+                        <i class="fa-solid fa-tools text-2xl text-primary mb-2"></i>
+                        <h5 class="font-bold text-sm">Waka Sarpras</h5>
+                        <p class="text-slate-500 text-xs mt-1">Nama Waka Sarpras</p>
+                    </div>
+                    <div class="bg-white border-t-4 border-primary p-5 text-center shadow-md">
+                        <i class="fa-solid fa-handshake text-2xl text-primary mb-2"></i>
+                        <h5 class="font-bold text-sm">Waka Humas</h5>
+                        <p class="text-slate-500 text-xs mt-1">Nama Waka Humas</p>
+                    </div>
+                </div>
+                <div class="flex justify-center mb-8">
+                    <div class="w-px h-8 bg-slate-300"></div>
+                </div>
+                <!-- Staff -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                    <div class="bg-white border p-4 text-center shadow-sm">
+                        <i class="fa-solid fa-chalkboard-user text-xl text-secondary mb-2"></i>
+                        <h5 class="font-bold text-sm">Dewan Guru</h5>
+                    </div>
+                    <div class="bg-white border p-4 text-center shadow-sm">
+                        <i class="fa-solid fa-clipboard-list text-xl text-secondary mb-2"></i>
+                        <h5 class="font-bold text-sm">Tata Usaha</h5>
+                    </div>
+                    <div class="bg-white border p-4 text-center shadow-sm">
+                        <i class="fa-solid fa-user-group text-xl text-secondary mb-2"></i>
+                        <h5 class="font-bold text-sm">Komite Sekolah</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Akademik -->
+        <section id="akademik" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-900 uppercase">Akademik</h2>
+                    <p class="text-slate-500 mt-2">Program pendidikan dan kegiatan belajar mengajar di SMA Negeri 2 Serui</p>
+                    <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+                </div>
+
+                <!-- Kurikulum -->
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4"><i class="fa-solid fa-graduation-cap text-primary mr-2"></i> Kurikulum</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">SMA Negeri 2 Serui menerapkan Kurikulum Merdeka yang memberikan fleksibilitas kepada guru dan siswa dalam proses pembelajaran. Kurikulum ini menekankan pada pengembangan kompetensi dan karakter peserta didik.</p>
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-primary"></i> Kurikulum Merdeka</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-primary"></i> Projek Penguatan Profil Pelajar Pancasila (P5)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-primary"></i> Pembelajaran Berbasis Teknologi</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-50 border p-6 text-center shadow-sm">
+                            <i class="fa-solid fa-flask text-3xl text-primary mb-3"></i>
+                            <h5 class="font-bold text-sm">IPA</h5>
+                            <p class="text-xs text-slate-500 mt-1">Matematika, Fisika, Kimia, Biologi</p>
+                        </div>
+                        <div class="bg-slate-50 border p-6 text-center shadow-sm">
+                            <i class="fa-solid fa-landmark text-3xl text-primary mb-3"></i>
+                            <h5 class="font-bold text-sm">IPS</h5>
+                            <p class="text-xs text-slate-500 mt-1">Ekonomi, Sosiologi, Geografi, Sejarah</p>
+                        </div>
+                        <div class="bg-slate-50 border p-6 text-center shadow-sm">
+                            <i class="fa-solid fa-language text-3xl text-primary mb-3"></i>
+                            <h5 class="font-bold text-sm">Bahasa</h5>
+                            <p class="text-xs text-slate-500 mt-1">B. Indonesia, B. Inggris, Sastra</p>
+                        </div>
+                        <div class="bg-slate-50 border p-6 text-center shadow-sm">
+                            <i class="fa-solid fa-laptop-code text-3xl text-primary mb-3"></i>
+                            <h5 class="font-bold text-sm">TIK</h5>
+                            <p class="text-xs text-slate-500 mt-1">Informatika & Teknologi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ekstrakurikuler -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center"><i class="fa-solid fa-star text-secondary mr-2"></i> Ekstrakurikuler</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-primary/5 border border-primary/20 p-5 text-center hover:bg-primary hover:text-white transition group">
+                            <i class="fa-solid fa-campground text-2xl text-primary group-hover:text-white mb-2"></i>
+                            <h5 class="font-bold text-sm">Pramuka</h5>
+                        </div>
+                        <div class="bg-primary/5 border border-primary/20 p-5 text-center hover:bg-primary hover:text-white transition group">
+                            <i class="fa-solid fa-futbol text-2xl text-primary group-hover:text-white mb-2"></i>
+                            <h5 class="font-bold text-sm">Olahraga</h5>
+                        </div>
+                        <div class="bg-primary/5 border border-primary/20 p-5 text-center hover:bg-primary hover:text-white transition group">
+                            <i class="fa-solid fa-palette text-2xl text-primary group-hover:text-white mb-2"></i>
+                            <h5 class="font-bold text-sm">Seni & Budaya</h5>
+                        </div>
+                        <div class="bg-primary/5 border border-primary/20 p-5 text-center hover:bg-primary hover:text-white transition group">
+                            <i class="fa-solid fa-book-open text-2xl text-primary group-hover:text-white mb-2"></i>
+                            <h5 class="font-bold text-sm">Karya Ilmiah</h5>
+                        </div>
+                        <div class="bg-primary/5 border border-primary/20 p-5 text-center hover:bg-primary hover:text-white transition group">
+                            <i class="fa-solid fa-cross text-2xl text-primary group-hover:text-white mb-2"></i>
+                            <h5 class="font-bold text-sm">Rohani Kristen</h5>
+                        </div>
+                        <div class="bg-primary/5 border border-primary/20 p-5 text-center hover:bg-primary hover:text-white transition group">
+                            <i class="fa-solid fa-flag text-2xl text-primary group-hover:text-white mb-2"></i>
+                            <h5 class="font-bold text-sm">Paskibra</h5>
+                        </div>
+                        <div class="bg-primary/5 border border-primary/20 p-5 text-center hover:bg-primary hover:text-white transition group">
+                            <i class="fa-solid fa-music text-2xl text-primary group-hover:text-white mb-2"></i>
+                            <h5 class="font-bold text-sm">Paduan Suara</h5>
+                        </div>
+                        <div class="bg-primary/5 border border-primary/20 p-5 text-center hover:bg-primary hover:text-white transition group">
+                            <i class="fa-solid fa-hand-fist text-2xl text-primary group-hover:text-white mb-2"></i>
+                            <h5 class="font-bold text-sm">PMR</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fasilitas -->
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center"><i class="fa-solid fa-school text-primary mr-2"></i> Fasilitas Sekolah</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                        <div class="flex items-center gap-3 bg-slate-50 border p-4">
+                            <i class="fa-solid fa-desktop text-primary text-lg"></i>
+                            <span class="text-sm font-medium text-slate-700">Laboratorium Komputer</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-50 border p-4">
+                            <i class="fa-solid fa-flask text-primary text-lg"></i>
+                            <span class="text-sm font-medium text-slate-700">Laboratorium IPA</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-50 border p-4">
+                            <i class="fa-solid fa-book text-primary text-lg"></i>
+                            <span class="text-sm font-medium text-slate-700">Perpustakaan</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-50 border p-4">
+                            <i class="fa-solid fa-mosque text-primary text-lg"></i>
+                            <span class="text-sm font-medium text-slate-700">Mushola</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-50 border p-4">
+                            <i class="fa-solid fa-volleyball text-primary text-lg"></i>
+                            <span class="text-sm font-medium text-slate-700">Lapangan Olahraga</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-50 border p-4">
+                            <i class="fa-solid fa-wifi text-primary text-lg"></i>
+                            <span class="text-sm font-medium text-slate-700">Area WiFi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeri -->
+        <section id="galeri" class="py-20 bg-slate-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-900 uppercase">Galeri Kegiatan</h2>
+                    <p class="text-slate-500 mt-2">Dokumentasi kegiatan dan momen berharga di SMA Negeri 2 Serui.</p>
+                    <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="group relative overflow-hidden aspect-square">
+                        <img src="./img/berbaris-lapangan-upacara.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Upacara Bendera</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden aspect-square">
+                        <img src="./img/pramuka.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Kegiatan Pramuka</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden aspect-square">
+                        <img src="./img/tarik-tambang.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Lomba Olahraga</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden aspect-square">
+                        <img src="./img/lab-komputer.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Praktikum Laboratorium</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden aspect-square">
+                        <img src="./img/siswa-guru.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Siswa & Wali Kelas</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden aspect-square">
+                        <img src="./img/pentas-budaya.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <p class="text-white font-semibold">Pentas Seni Budaya</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="#" class="inline-block border-2 border-primary text-primary px-8 py-3 font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition">Lihat Semua Galeri <i class="fa-solid fa-arrow-right ml-2 text-sm"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="kontak" class="bg-slate-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 grid md:grid-cols-4 gap-12 border-b border-slate-800 pb-12">
+            <div class="md:col-span-1">
+                <h3 class="text-2xl font-bold mb-6 text-primary">SMAN 2 SERUI</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Institusi pendidikan menengah atas di Kabupaten Kepulauan Yapen yang berkomitmen mencetak SDM unggul di Tanah Papua.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase tracking-widest text-secondary">Tautan Cepat</h4>
+                <ul class="space-y-3 text-slate-400 text-sm">
+                    <li><a href="#" class="hover:text-white transition">PPDB Online</a></li>
+                    <li><a href="#" class="hover:text-white transition">E-Learning</a></li>
+                    <li><a href="#" class="hover:text-white transition">Data Guru</a></li>
+                    <li><a href="#" class="hover:text-white transition">Perpustakaan Digital</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-2">
+                <h4 class="font-bold mb-6 uppercase tracking-widest text-secondary">Kontak & Lokasi</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-400">
+                    <p><i class="fa-solid fa-location-dot mr-3 text-primary"></i> Jl. Pendidikan No. 12, Serui, Papua</p>
+                    <p><i class="fa-solid fa-phone mr-3 text-primary"></i> (0983) 123456</p>
+                    <p><i class="fa-solid fa-envelope mr-3 text-primary"></i> info@sman2serui.sch.id</p>
+                    <div class="flex space-x-4 mt-2">
+                        <a href="#" class="w-10 h-10 bg-slate-800 flex items-center justify-center hover:bg-primary transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 flex items-center justify-center hover:bg-primary transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 flex items-center justify-center hover:bg-primary transition"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-8 text-center text-xs text-slate-500">
+            <p>&copy; 2024 SMA Negeri 2 Serui. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading-screen').classList.add('hidden');
+            }, 800);
+        });
+
+        // Chart.js
+        const ctx = document.getElementById('statChart').getContext('2d');
+
+        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+        gradient.addColorStop(0, 'rgba(184,134,11,0.8)');
+        gradient.addColorStop(1, 'rgba(184,134,11,0.2)');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Jumlah Lulusan',
+                    data: [120, 150, 180, 210],
+                    backgroundColor: gradient,
+                    borderColor: '#b8860b',
+                    borderWidth: 2,
+                    borderSkipped: false,
+                    barPercentage: 0.6,
+                    categoryPercentage: 0.7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 13 },
+                        padding: 12,
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + ' siswa';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 250,
+                        ticks: {
+                            color: 'rgba(255,255,255,0.7)',
+                            font: { size: 12, weight: '500' },
+                            stepSize: 50
+                        },
+                        grid: { color: 'rgba(255,255,255,0.08)' },
+                        border: { color: 'rgba(255,255,255,0.15)' }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'rgba(255,255,255,0.8)',
+                            font: { size: 13, weight: '600' }
+                        },
+                        grid: { display: false },
+                        border: { color: 'rgba(255,255,255,0.15)' }
+                    }
+                },
+                animation: {
+                    duration: 1200,
+                    easing: 'easeOutQuart'
+                }
+            },
+            plugins: [{
+                afterDraw: function(chart) {
+                    const ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, i) {
+                        const meta = chart.getDatasetMeta(i);
+                        meta.data.forEach(function(bar, index) {
+                            const data = dataset.data[index];
+                            ctx.fillStyle = 'rgba(255,255,255,0.9)';
+                            ctx.font = 'bold 14px Plus Jakarta Sans, sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.fillText(data, bar.x, bar.y - 8);
+                        });
+                    });
+                }
+            }]
+        });
+    </script>
+</body>
+</html>
