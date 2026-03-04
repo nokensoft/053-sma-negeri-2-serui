@@ -116,6 +116,14 @@
         <div class="loading-bar"></div>
     </div>
 
+    <!-- Topbar Disclaimer -->
+    <div x-data="{ showBar: true }" x-show="showBar" class="bg-secondary text-white text-xs md:text-sm relative z-[60]">
+        <div class="container mx-auto px-4 py-2 flex items-center justify-between gap-4">
+            <p class="flex-1 text-center"><i class="fa-solid fa-triangle-exclamation mr-1"></i> <strong>Disclaimer:</strong> Website ini dibuat oleh <a href="https://nokensoft.com" target="_blank" class="underline font-bold hover:text-white/80">Nokensoft.com</a> sebagai demo awal. Semua konten teks dan gambar digenerate dengan bantuan AI dan hasil analisa/survey pengembang web.</p>
+            <button @click="showBar = false" class="flex-shrink-0 hover:text-white/70 transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+    </div>
+
     <header class="bg-white border-b sticky top-0 z-50 shadow-md">
         <nav class="container mx-auto px-4 py-4 flex flex-col md:flex-row md:justify-between items-center">
             
@@ -657,8 +665,14 @@
         </div>
         <div class="container mx-auto px-4 mt-8 text-center text-xs text-slate-500">
             <p>&copy; 2024 SMA Negeri 2 Serui. All Rights Reserved.</p>
+            <p class="mt-2">Powered by <a href="https://nokensoft.com" target="_blank" class="text-primary hover:text-white font-semibold transition">Nokensoft.com</a></p>
         </div>
     </footer>
+
+    <!-- Floating WA Button -->
+    <a href="https://wa.me/6282199558191" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-14 h-14 flex items-center justify-center shadow-lg transition hover:scale-110" title="Hubungi via WhatsApp">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+    </a>
 
     <script>
         // Loading Screen
